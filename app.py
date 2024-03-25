@@ -52,7 +52,7 @@ def get_all_ideas():
 def save_new_idea(title, description):
     # Create a new page in Notion with the provided title and description
     new_page = notion.pages.create(
-        parent={"database_id": st.secrets(database_id)},
+        parent={"database_id": st.secrets["database_id"]},
         properties={
             'title': {
                 'rich_text': [
