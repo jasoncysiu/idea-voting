@@ -5,6 +5,16 @@ from notion_client import Client
 
 # Initialize Notion client with your integration token
 notion = Client(auth=st.secrets["auth"])
+# Include Google Fonts CSS for Philosopher and apply it
+st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+    
+    html, body, [class*="st-"], .stButton>button {
+        font-family: 'Philosopher', sans-serif;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 # Function to get all ideas from your Notion database
 def get_all_ideas():
@@ -15,12 +25,6 @@ def get_all_ideas():
         title = "Untitled"
         description = "No Description"
         votes = 0
-
-        # # Check and fetch the 'title' property
-        # if 'title' in item['properties'] and item['properties']['title']['type'] == 'title':
-        #     title_elements = item['properties']['title']['title']
-        #     if title_elements:  # Check if title elements are present
-        #         title = title_elements[0]['plain_text']
         
         # Check and fetch the 'title' property assuming it's a rich text field
         if 'title' in item['properties'] and item['properties']['title']['type'] == 'rich_text':
