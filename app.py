@@ -1,13 +1,15 @@
 import streamlit as st
 from notion_client import Client
 
+
+
 # Initialize Notion client with your integration token
-notion = Client(auth=st.secrets(auth))
+notion = Client(auth=st.secrets["auth"])
 
 # Function to get all ideas from your Notion database
 def get_all_ideas():
     ideas = []
-    query = notion.databases.query(database_id=database_id)
+    query = notion.databases.query(database_id= st.secrets["database_id"])
     for item in query['results']:
         # Initialize default values in case any field is missing
         title = "Untitled"
